@@ -1,6 +1,7 @@
-export const soundFiles={attack:'attack.mp3',win:'win.mp3',gameOver:'game-over.mp3',death:'death.mp3',miss:'miss.mp3',pipe:'pipe.mp3',underground:'underground.mp3',yipee:'yipee.mp3',theme:'main-theme.mp3',fall:'fall.mp3',why:'mario-why.wav'} as const;
+export const soundFiles={attack:'attack.mp3',win:'win.mp3',gameOver:'game-over.mp3',death:'death.mp3',miss:'miss.mp3',pipe:'pipe.mp3',underground:'underground.mp3',yipee:'yipee.mp3',theme:'main-theme.mp3',fall:'fall.mp3'} as const;
 export type SoundName=keyof typeof soundFiles;
-export const defeatSounds:SoundName[]=['death','fall','gameOver','why'];
+// Try Again appears at this scene boundary: play Fall immediately, not after Death.
+export const defeatSounds:SoundName[]=['fall','death','gameOver'];
 
 /** Two bounded music layers and one sequential effects channel. No accumulating audio instances. */
 export class PresentationAudio{

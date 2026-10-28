@@ -34,14 +34,14 @@ test('four topics, all attacks, walking, hidden-answer assessment and rescue',as
      await expect(page.getByText('BOWSER \u00b7 375 / 400 HP',{exact:true})).toBeVisible();
      if(life>0)await page.getByRole('button',{name:'Retry question',exact:true}).click();
     }
-    await expect(page.getByRole('heading',{name:'Whhhhyyyyyyyy...',exact:true})).toBeVisible();
-    expect(await page.evaluate(()=>(window as typeof window&{audioEvents:Record<string,number>}).audioEvents['death.mp3']||0)).toBe(0);
+    await expect(page.getByRole('heading',{name:'Try again, Mario!',exact:true})).toBeVisible();
+    expect(await page.evaluate(()=>(window as typeof window&{audioEvents:Record<string,number>}).audioEvents['fall.mp3']||0)).toBe(0);
     await page.getByRole('button',{name:'Enable sound',exact:true}).click();
-    await expect.poll(()=>page.evaluate(()=>(window as typeof window&{audioEvents:Record<string,number>}).audioEvents['death.mp3']||0)).toBe(1);
-    for(const file of ['death.mp3','fall.mp3','game-over.mp3'])await page.evaluate(file=>(window as typeof window&{audioPlayers:Record<string,HTMLMediaElement>}).audioPlayers[file].dispatchEvent(new Event('ended')),file);
-    await expect.poll(()=>page.evaluate(()=>(window as typeof window&{audioEvents:Record<string,number>}).audioEvents['mario-why.wav']||0)).toBe(1);
+    await expect.poll(()=>page.evaluate(()=>(window as typeof window&{audioEvents:Record<string,number>}).audioEvents['fall.mp3']||0)).toBe(1);
+    for(const file of ['fall.mp3','death.mp3'])await page.evaluate(file=>(window as typeof window&{audioPlayers:Record<string,HTMLMediaElement>}).audioPlayers[file].dispatchEvent(new Event('ended')),file);
+    await expect.poll(()=>page.evaluate(()=>(window as typeof window&{audioEvents:Record<string,number>}).audioEvents['game-over.mp3']||0)).toBe(1);
     await page.getByRole('button',{name:'Replay defeat sounds',exact:true}).click();
-    await expect.poll(()=>page.evaluate(()=>(window as typeof window&{audioEvents:Record<string,number>}).audioEvents['death.mp3']||0)).toBe(2);
+    await expect.poll(()=>page.evaluate(()=>(window as typeof window&{audioEvents:Record<string,number>}).audioEvents['fall.mp3']||0)).toBe(2);
     await page.screenshot({path:'tests/checkpoint-defeat.png',fullPage:true});
     await page.getByRole('button',{name:'Retry checkpoint',exact:true}).click();
     await expect(page.getByRole('img',{name:'3 of 3 lives remaining',exact:true})).toBeVisible();
@@ -111,8 +111,8 @@ test('world map exports the complete PDF with no answer key',async({page})=>{
 });
 
 
-test('local defeat voice cue decodes without external services',async({page})=>{
+test('local fall cue decodes without external services',async({page})=>{
  await page.goto('http://127.0.0.1:5173');
- const duration=await page.evaluate(async()=>{const bytes=await (await fetch('audio/mario-why.wav')).arrayBuffer();const context=new AudioContext();try{return (await context.decodeAudioData(bytes)).duration;}finally{await context.close();}});
+ const duration=await page.evaluate(async()=>{const bytes=await (await fetch('audio/fall.mp3')).arrayBuffer();const context=new AudioContext();try{return (await context.decodeAudioData(bytes)).duration;}finally{await context.close();}});
  expect(duration).toBeGreaterThan(1);
 });

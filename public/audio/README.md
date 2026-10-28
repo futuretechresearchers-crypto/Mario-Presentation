@@ -15,6 +15,6 @@ The following files were supplied by the user from Downloads and copied into thi
 | main-theme.mp3 | SUPER MARIO BROS. - Main Theme By Koji Kondo _ Nintendo.mp3 | Continuous low-volume background theme |
 | fall.mp3 | Mario Fall - QuickSounds.com.mp3 | Falling / Try Again part of the defeat sequence |
 
-The bounded effects channel plays Death -> Fall -> Game Over -> the existing Why cue sequentially. Retry, leaving the scene, and Sound Off cancel the remainder. Repeated attack events reuse one audio instance. The main theme is ducked under effects and the underground track so educational speech remains clear. Sound starts off to respect browser autoplay behavior; enabling it is an explicit user gesture.
+The bounded effects channel starts Fall immediately when Try Again appears, then plays Death -> Game Over sequentially. Retry, leaving the scene, and Sound Off cancel the remainder. Repeated attack events reuse one audio instance. The main theme is ducked under effects and the underground track so educational speech remains clear. Sound starts off to respect browser autoplay behavior; enabling it is an explicit user gesture.
 
-`mario-why.wav` remains the original locally generated spoken Why cue, with the caption Whhhhyyyyyyyy.... It was synthesized using Windows SAPI Microsoft David Desktop; it is not a game recording or voice clone. The new controller uses this WAV directly rather than browser speech synthesis.
+The generated Why voice cue and its unused speech-synthesis hook have been removed. The retry panel instead shows an original falling Mario illustration inspired by the supplied image.
