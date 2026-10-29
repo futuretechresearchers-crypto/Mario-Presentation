@@ -5,7 +5,7 @@ Updated October 29, 2026. Windows / Node.js 24.15.0 / Chromium.
 ## Checks
 
 - `npm run build`: TypeScript and production Vite build passed.
-- `npm test`: **47 tests passed**. Coverage includes four checkpoint phases, 400 HP, three lives and impact timing, EXP deduplication, assessment grading, persistence/migration, rehearsal isolation, DevOps rescue gates, and sound sequencing.
+- `npm test`: **49 tests passed**. Coverage includes four checkpoint phases, 400 HP, three lives and impact timing, EXP deduplication, assessment grading, persistence/migration, rehearsal isolation, DevOps rescue gates, and sound sequencing.
 - `npm run test:e2e`: **10 Chromium tests passed**. The full journey covered all **40 lesson slides**, 16 checkpoint questions, all three attacks, three-life defeat/retry, EXP, pipe exits and walking, the rescue-and-kiss cutscene before the final quiz, a **0/15 failed attempt**, a **15/15 retake**, and all **10 dancing review slides**. No page errors were observed.
 - Audio checks verified that all **10 supplied MP3 files** decode locally. Browser event instrumentation verified the Main Theme, Underground encounter music, shared attack effect, MISS, Fall -> Death -> Game Over sequence, entrance/pipe cues, first-three-round Yipee cues, DevOps win cue, and rescue Yipee cue. Muting pauses every active player. Retrying cancels pending defeat clips. Unit tests cover stale playback rejection and error recovery.
 - A dedicated retry check confirms Fall is requested immediately while the Try Again panel and raised-arms / boots-forward falling figure are already visible, before Death starts. The generated Why WAV and its unused speech hook were removed from source and production output.
@@ -13,7 +13,8 @@ Updated October 29, 2026. Windows / Node.js 24.15.0 / Chromium.
 - The four original SVG environments have distinct accessible labels: Floating Grasslands, Crystal Ice Cave, Lava Chain Fortress, and Volcanic Cavern. They follow the supplied visual references without embedding the screenshot images.
 - A focused visual test confirms the kiss reaches close contact and holds before the cheer. Rescue state survives refresh independently of the final assessment. An unfinished rescue can be resumed from the map. Rehearsal never awards rescue progress. Reduced motion shows a static celebration with explicit Continue.
 - Mobile/reduced-motion checks passed at **390 x 844**: viewport fit, scrolling map, answer input, single life loss and EXP award despite repeated input, refresh, rehearsal, and reset confirmation.
-- PDF export passed: the map button downloaded the **135-page landscape PDF** with all lessons, notes, review, 16 checkpoint questions, 15 final quiz items, and references. No answer key is included. Artifact: `tests/software-automation-complete-presentation.pdf`.
+- Updated PDF export passed its focused browser download check and unit checks: **37 pages**, consisting of **34 informative topic slides plus 3 reference pages**. Every topic slide has a simple explanation on the same page. Quizzes, objective-only slides, checkpoint summaries, duplicate review content, and separate speaker-note pages are excluded. Text bounds are checked for wrapped content. Artifact: `tests/software-automation-informative-slides.pdf`. The historical complete-presentation artifact was refreshed with the same corrected content.
+
 - Environment screenshots, checkpoint defeat/mobile screenshots, and the rescue kiss screenshot were visually inspected. Screenshots are in `tests/`.
 
 ## Repeat browser checks

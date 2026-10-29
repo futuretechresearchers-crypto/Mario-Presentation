@@ -100,13 +100,13 @@ test('mobile map scrolls, rehearsal stays isolated and reset asks for confirmati
  await page.getByRole('button',{name:'Presenter menu'}).click();await page.getByRole('button',{name:'Start new adventure',exact:true}).click();await expect(page.getByRole('button',{name:'Confirm reset',exact:true})).toBeVisible();await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);
 });
 
-test('world map exports the complete PDF with no answer key',async({page})=>{
+test('world map exports informative topics with same-page explanations and no quizzes',async({page})=>{
  await page.goto('http://127.0.0.1:5173');await page.getByRole('button',{name:'Play Presentation',exact:true}).click();
  const downloadEvent=page.waitForEvent('download');await page.getByRole('button',{name:'Download presentation PDF',exact:true}).click();const download=await downloadEvent;
- expect(download.suggestedFilename()).toBe('software-automation-complete-presentation.pdf');
- await download.saveAs('tests/software-automation-complete-presentation.pdf');const pdf=await readFile('tests/software-automation-complete-presentation.pdf');
- expect(pdf.subarray(0,5).toString()).toBe('%PDF-');expect(pdf.length).toBeGreaterThan(80000);
- const text=pdf.toString('latin1');expect(text.includes('What is Software Tools and Process Automation?')).toBe(true);expect(text.includes('FINAL QUIZ / 15 OF 15')).toBe(true);expect(text.includes('References')).toBe(true);expect(text.includes('CHECKPOINT 4 OF 4')).toBe(true);expect(text.includes('Correct answer:')).toBe(false);
+ expect(download.suggestedFilename()).toBe('software-automation-informative-slides.pdf');
+ await download.saveAs('tests/software-automation-informative-slides.pdf');const pdf=await readFile('tests/software-automation-informative-slides.pdf');
+ expect(pdf.subarray(0,5).toString()).toBe('%PDF-');expect(pdf.length).toBeGreaterThan(35000);
+ const text=pdf.toString('latin1');expect(text.includes('What is Software Tools and Process Automation?')).toBe(true);expect(text.includes('FINAL QUIZ')).toBe(false);expect(text.includes('References')).toBe(true);expect(text.includes('CHECKPOINT')).toBe(false);expect(text.includes('SPEAKER NOTES')).toBe(false);expect((text.match(/SIMPLE EXPLANATION/g)||[]).length).toBe(34);expect((text.match(/\/Type \/Page\b/g)||[]).length).toBe(37);expect(text.includes('Correct answer:')).toBe(false);
  await expect(page.getByRole('status').filter({hasText:'Downloaded'})).toBeVisible();
 });
 

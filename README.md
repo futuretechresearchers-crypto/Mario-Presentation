@@ -59,7 +59,7 @@ This is a client-side classroom activity, not a secure examination platform: int
 
 ## PDF download
 
-Click **Download presentation PDF** on the world map. It generates a searchable landscape PDF of the full presentation, with all 40 lesson slides, speaker-note pages, 10 review slides and notes, 16 checkpoint questions, 15 final quiz items, and references. Diagrams use static text equivalents. **No answer key is included.** Animations and interactive controls remain browser-only. PDF generation is lazy-loaded and needs no external API.
+Click **Download presentation PDF** on the world map. It generates `software-automation-informative-slides.pdf`: **34 informative slides plus 3 reference pages**. Each topic slide includes a short, plain-language explanation on the same page. Definitions, comparisons, workflows, code examples, and DevOps metrics remain. Objective-only introductions, checkpoint summaries, quizzes, duplicate review slides, and separate speaker-note pages are omitted. The interactive presentation still contains its original lessons and quizzes. PDF generation works locally without an external API.
 
 ## Presenter and persistence controls
 
